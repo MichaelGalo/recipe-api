@@ -1,0 +1,107 @@
+[
+    {
+      "model": "recipe_api.grocerysubtype",
+      "pk": 1,
+      "fields": {
+        "name": "Dairy"
+      }
+    },
+    {
+      "model": "recipe_api.grocerysubtype",
+      "pk": 2,
+      "fields": {
+        "name": "Produce"
+      }
+    },
+    {
+      "model": "recipe_api.grocerysubtype",
+      "pk": 3,
+      "fields": {
+        "name": "Baking"
+      }
+    },
+    {
+      "model": "recipe_api.grocerysubtype",
+      "pk": 4,
+      "fields": {
+        "name": "Meat"
+      }
+    },
+    {
+      "model": "recipe_api.grocerysubtype",
+      "pk": 5,
+      "fields": {
+        "name": "Seafood"
+      }
+    },
+    {
+      "model": "recipe_api.grocerysubtype",
+      "pk": 6,
+      "fields": {
+        "name": "Frozen"
+      }
+    },
+    {
+      "model": "recipe_api.grocerysubtype",
+      "pk": 7,
+      "fields": {
+        "name": "Canned Goods"
+      }
+    },
+    {
+      "model": "recipe_api.grocerysubtype",
+      "pk": 8,
+      "fields": {
+        "name": "Dry Goods"
+      }
+    },
+    {
+      "model": "recipe_api.grocerysubtype",
+      "pk": 9,
+      "fields": {
+        "name": "Beverages"
+      }
+    },
+    {
+      "model": "recipe_api.grocerysubtype",
+      "pk": 10,
+      "fields": {
+        "name": "Snacks"
+      }
+    },
+    {
+      "model": "recipe_api.grocerysubtype",
+      "pk": 11,
+      "fields": {
+        "name": "Condiments"
+      }
+    },
+    {
+      "model": "recipe_api.grocerysubtype",
+      "pk": 12,
+      "fields": {
+        "name": "Spices"
+      }
+    },
+    {
+      "model": "recipe_api.grocerysubtype",
+      "pk": 13,
+      "fields": {
+        "name": "Bread"
+      }
+    },
+    {
+      "model": "recipe_api.grocerysubtype",
+      "pk": 14,
+      "fields": {
+        "name": "Cleaning Supplies"
+      }
+    },
+    {
+      "model": "recipe_api.grocerysubtype",
+      "pk": 15,
+      "fields": {
+        "name": "Personal Care"
+      }
+    }
+  ]

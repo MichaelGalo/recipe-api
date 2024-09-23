@@ -1,0 +1,182 @@
+[
+    {
+        "model": "recipe_api.ingredientforrecipe",
+        "pk": 6,
+        "fields": {
+            "ingredientId": 245,
+            "recipeId": 17,
+            "quantity": 1
+        }
+    },
+    {
+        "model": "recipe_api.ingredientforrecipe",
+        "pk": 7,
+        "fields": {
+            "ingredientId": 131,
+            "recipeId": 17,
+            "quantity": 1
+        }
+    },
+    {
+        "model": "recipe_api.ingredientforrecipe",
+        "pk": 8,
+        "fields": {
+            "ingredientId": 77,
+            "recipeId": 17,
+            "quantity": 1
+        }
+    },
+    {
+        "model": "recipe_api.ingredientforrecipe",
+        "pk": 9,
+        "fields": {
+            "ingredientId": 246,
+            "recipeId": 17,
+            "quantity": 2
+        }
+    },
+    {
+        "model": "recipe_api.ingredientforrecipe",
+        "pk": 10,
+        "fields": {
+            "ingredientId": 1,
+            "recipeId": 17,
+            "quantity": 2
+        }
+    },
+    {
+        "model": "recipe_api.ingredientforrecipe",
+        "pk": 11,
+        "fields": {
+            "ingredientId": 43,
+            "recipeId": 17,
+            "quantity": 1
+        }
+    },
+    {
+        "model": "recipe_api.ingredientforrecipe",
+        "pk": 12,
+        "fields": {
+            "ingredientId": 74,
+            "recipeId": 17,
+            "quantity": 1
+        }
+    },
+    {
+        "model": "recipe_api.ingredientforrecipe",
+        "pk": 13,
+        "fields": {
+            "ingredientId": 81,
+            "recipeId": 17,
+            "quantity": 1
+        }
+    },
+    {
+        "model": "recipe_api.ingredientforrecipe",
+        "pk": 14,
+        "fields": {
+            "ingredientId": 92,
+            "recipeId": 17,
+            "quantity": 1
+        }
+    },
+    {
+        "model": "recipe_api.ingredientforrecipe",
+        "pk": 15,
+        "fields": {
+            "ingredientId": 11,
+            "recipeId": 17,
+            "quantity": 1
+        }
+    },
+    {
+        "model": "recipe_api.ingredientforrecipe",
+        "pk": 16,
+        "fields": {
+            "ingredientId": 61,
+            "recipeId": 17,
+            "quantity": 1
+        }
+    },
+    {
+        "model": "recipe_api.ingredientforrecipe",
+        "pk": 17,
+        "fields": {
+            "ingredientId": 47,
+            "recipeId": 17,
+            "quantity": 1
+        }
+    },
+    {
+        "model": "recipe_api.ingredientforrecipe",
+        "pk": 18,
+        "fields": {
+            "ingredientId": 48,
+            "recipeId": 17,
+            "quantity": 1
+        }
+    },
+    {
+        "model": "recipe_api.ingredientforrecipe",
+        "pk": 19,
+        "fields": {
+            "ingredientId": 49,
+            "recipeId": 17,
+            "quantity": 1
+        }
+    },
+    {
+        "model": "recipe_api.ingredientforrecipe",
+        "pk": 20,
+        "fields": {
+            "ingredientId": 50,
+            "recipeId": 17,
+            "quantity": 1
+        }
+    },
+    {
+        "model": "recipe_api.ingredientforrecipe",
+        "pk": 21,
+        "fields": {
+            "ingredientId": 51,
+            "recipeId": 17,
+            "quantity": 1
+        }
+    },
+    {
+        "model": "recipe_api.ingredientforrecipe",
+        "pk": 22,
+        "fields": {
+            "ingredientId": 52,
+            "recipeId": 17,
+            "quantity": 1
+        }
+    },
+    {
+        "model": "recipe_api.ingredientforrecipe",
+        "pk": 23,
+        "fields": {
+            "ingredientId": 53,
+            "recipeId": 17,
+            "quantity": 1
+        }
+    },
+    {
+        "model": "recipe_api.ingredientforrecipe",
+        "pk": 24,
+        "fields": {
+            "ingredientId": 54,
+            "recipeId": 17,
+            "quantity": 1
+        }
+    },
+    {
+        "model": "recipe_api.ingredientforrecipe",
+        "pk": 25,
+        "fields": {
+            "ingredientId": 55,
+            "recipeId": 17,
+            "quantity": 1
+        }
+    }
+]

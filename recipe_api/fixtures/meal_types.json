@@ -1,0 +1,107 @@
+[
+    {
+      "model": "recipe_api.mealtype",
+      "pk": 1,
+      "fields": {
+        "name": "Italian"
+      }
+    },
+    {
+      "model": "recipe_api.mealtype",
+      "pk": 2,
+      "fields": {
+        "name": "Chinese"
+      }
+    },
+    {
+      "model": "recipe_api.mealtype",
+      "pk": 3,
+      "fields": {
+        "name": "Mexican"
+      }
+    },
+    {
+      "model": "recipe_api.mealtype",
+      "pk": 4,
+      "fields": {
+        "name": "Indian"
+      }
+    },
+    {
+      "model": "recipe_api.mealtype",
+      "pk": 5,
+      "fields": {
+        "name": "Japanese"
+      }
+    },
+    {
+      "model": "recipe_api.mealtype",
+      "pk": 6,
+      "fields": {
+        "name": "French"
+      }
+    },
+    {
+      "model": "recipe_api.mealtype",
+      "pk": 7,
+      "fields": {
+        "name": "Thai"
+      }
+    },
+    {
+      "model": "recipe_api.mealtype",
+      "pk": 8,
+      "fields": {
+        "name": "Greek"
+      }
+    },
+    {
+      "model": "recipe_api.mealtype",
+      "pk": 9,
+      "fields": {
+        "name": "Spanish"
+      }
+    },
+    {
+      "model": "recipe_api.mealtype",
+      "pk": 10,
+      "fields": {
+        "name": "American"
+      }
+    },
+    {
+      "model": "recipe_api.mealtype",
+      "pk": 11,
+      "fields": {
+        "name": "Middle Eastern"
+      }
+    },
+    {
+      "model": "recipe_api.mealtype",
+      "pk": 12,
+      "fields": {
+        "name": "Vietnamese"
+      }
+    },
+    {
+      "model": "recipe_api.mealtype",
+      "pk": 13,
+      "fields": {
+        "name": "Korean"
+      }
+    },
+    {
+      "model": "recipe_api.mealtype",
+      "pk": 14,
+      "fields": {
+        "name": "Mediterranean"
+      }
+    },
+    {
+      "model": "recipe_api.mealtype",
+      "pk": 15,
+      "fields": {
+        "name": "Brazilian"
+      }
+    }
+  ]

@@ -1,0 +1,66 @@
+[
+    {
+        "model": "recipe_api.recipelike",
+        "pk": 4,
+        "fields": {
+            "recipeId": 6,
+            "userId": 17
+        }
+    },
+    {
+        "model": "recipe_api.recipelike",
+        "pk": 5,
+        "fields": {
+            "recipeId": 1,
+            "userId": 17
+        }
+    },
+    {
+        "model": "recipe_api.recipelike",
+        "pk": 6,
+        "fields": {
+            "recipeId": 5,
+            "userId": 17
+        }
+    },
+    {
+        "model": "recipe_api.recipelike",
+        "pk": 8,
+        "fields": {
+            "recipeId": 5,
+            "userId": 16
+        }
+    },
+    {
+        "model": "recipe_api.recipelike",
+        "pk": 9,
+        "fields": {
+            "recipeId": 9,
+            "userId": 16
+        }
+    },
+    {
+        "model": "recipe_api.recipelike",
+        "pk": 10,
+        "fields": {
+            "recipeId": 10,
+            "userId": 17
+        }
+    },
+    {
+        "model": "recipe_api.recipelike",
+        "pk": 11,
+        "fields": {
+            "recipeId": 3,
+            "userId": 17
+        }
+    },
+    {
+        "model": "recipe_api.recipelike",
+        "pk": 12,
+        "fields": {
+            "recipeId": 7,
+            "userId": 17
+        }
+    }
+]

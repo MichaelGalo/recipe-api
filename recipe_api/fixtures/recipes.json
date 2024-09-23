@@ -1,0 +1,182 @@
+[
+    {
+        "model": "recipe_api.recipe",
+        "pk": 1,
+        "fields": {
+            "title": "Honey Glazed Salmon",
+            "body": "Instructions:\n1. Preheat oven to 400°F (200°C).\n2. Mix honey, soy sauce, lemon juice, and minced garlic.\n3. Place salmon fillets in a baking dish, pour glaze over them.\n4. Bake for 15-20 minutes, basting occasionally.\n5. Broil for 2-3 minutes to caramelize the glaze.\n6. Garnish with sesame seeds and green onions.\n7. Serve with steamed vegetables and rice.",
+            "meal_type": 2,
+            "user": 6,
+            "author_favorite": true,
+            "favorites": 1,
+            "time": 30,
+            "servings": 4,
+            "date": "2024-07-31"
+        }
+    },
+    {
+        "model": "recipe_api.recipe",
+        "pk": 2,
+        "fields": {
+            "title": "Classic Beef Lasagna",
+            "body": "Instructions:\n1. Brown ground beef with onions and garlic.\n2. Add tomato sauce and Italian seasonings, simmer.\n3. Mix ricotta, egg, and parmesan cheese.\n4. Layer lasagna noodles, meat sauce, ricotta mix, and mozzarella.\n5. Repeat layers, ending with mozzarella on top.\n6. Bake at 375°F for 45 minutes.\n7. Let rest for 10 minutes before serving.",
+            "meal_type": 1,
+            "user": 7,
+            "author_favorite": false,
+            "favorites": 0,
+            "time": 90,
+            "servings": 8,
+            "date": "2024-07-31"
+        }
+    },
+    {
+        "model": "recipe_api.recipe",
+        "pk": 3,
+        "fields": {
+            "title": "Mediterranean Chickpea Salad",
+            "body": "Instructions:\n1. Drain and rinse canned chickpeas.\n2. Chop cucumber, tomatoes, red onion, and bell pepper.\n3. Mix vegetables with chickpeas in a large bowl.\n4. Add crumbled feta cheese and kalamata olives.\n5. Whisk olive oil, lemon juice, garlic, and herbs for dressing.\n6. Pour dressing over salad and toss gently.\n7. Chill for at least 30 minutes before serving.",
+            "meal_type": 8,
+            "user": 8,
+            "author_favorite": true,
+            "favorites": 2,
+            "time": 20,
+            "servings": 6,
+            "date": "2024-07-31"
+        }
+    },
+    {
+        "model": "recipe_api.recipe",
+        "pk": 4,
+        "fields": {
+            "title": "Homemade Margherita Pizza",
+            "body": "Instructions:\n1. Preheat oven to 450°F with a pizza stone.\n2. Roll out pizza dough on a floured surface.\n3. Spread a thin layer of tomato sauce on the dough.\n4. Add sliced fresh mozzarella and halved cherry tomatoes.\n5. Drizzle with olive oil and sprinkle with salt.\n6. Bake for 12-15 minutes until crust is golden.\n7. Top with fresh basil leaves before serving.",
+            "meal_type": 1,
+            "user": 9,
+            "author_favorite": false,
+            "favorites": 0,
+            "time": 30,
+            "servings": 4,
+            "date": "2024-07-31"
+        }
+    },
+    {
+        "model": "recipe_api.recipe",
+        "pk": 5,
+        "fields": {
+            "title": "Creamy Mushroom Risotto",
+            "body": "Instructions:\n1. Sauté mushrooms in butter until golden, set aside.\n2. In same pan, sauté onions until translucent.\n3. Add Arborio rice, stir to coat with oil.\n4. Gradually add warm broth, stirring constantly.\n5. Cook until rice is creamy and al dente.\n6. Stir in mushrooms, parmesan cheese, and parsley.\n7. Season with salt and pepper, serve immediately.",
+            "meal_type": 1,
+            "user": 10,
+            "author_favorite": true,
+            "favorites": 3,
+            "time": 40,
+            "servings": 4,
+            "date": "2024-07-31"
+        }
+    },
+    {
+        "model": "recipe_api.recipe",
+        "pk": 6,
+        "fields": {
+            "title": "Spicy Thai Green Curry",
+            "body": "Instructions:\n1. Heat coconut oil in a large pot.\n2. Add green curry paste and cook until fragrant.\n3. Pour in coconut milk and bring to a simmer.\n4. Add diced chicken or tofu and vegetables.\n5. Simmer until chicken is cooked and veggies are tender.\n6. Stir in fish sauce, lime juice, and brown sugar.\n7. Serve over jasmine rice with fresh cilantro.",
+            "meal_type": 7,
+            "user": 11,
+            "author_favorite": false,
+            "favorites": 1,
+            "time": 35,
+            "servings": 4,
+            "date": "2024-07-31"
+        }
+    },
+    {
+        "model": "recipe_api.recipe",
+        "pk": 7,
+        "fields": {
+            "title": "Caprese Stuffed Avocados",
+            "body": "Instructions:\n1. Halve avocados and remove pits.\n2. Dice fresh mozzarella and cherry tomatoes.\n3. Mix mozzarella and tomatoes with chopped basil.\n4. Spoon mixture into avocado halves.\n5. Drizzle with balsamic glaze.\n6. Sprinkle with salt and pepper.\n7. Serve immediately as a light lunch or appetizer.",
+            "meal_type": 1,
+            "user": 12,
+            "author_favorite": true,
+            "favorites": 2,
+            "time": 15,
+            "servings": 2,
+            "date": "2024-07-31"
+        }
+    },
+    {
+        "model": "recipe_api.recipe",
+        "pk": 8,
+        "fields": {
+            "title": "Beef and Broccoli Stir-Fry",
+            "body": "Instructions:\n1. Slice beef thinly and marinate in soy sauce and cornstarch.\n2. Heat oil in a wok or large skillet.\n3. Stir-fry beef until browned, remove from pan.\n4. In same pan, stir-fry broccoli and garlic.\n5. Add beef back to pan with oyster sauce and water.\n6. Cook until sauce thickens and broccoli is tender-crisp.\n7. Serve over steamed rice.",
+            "meal_type": 2,
+            "user": 13,
+            "author_favorite": false,
+            "favorites": 0,
+            "time": 25,
+            "servings": 4,
+            "date": "2024-07-31"
+        }
+    },
+    {
+        "model": "recipe_api.recipe",
+        "pk": 9,
+        "fields": {
+            "title": "Lemon Blueberry Pancakes",
+            "body": "Instructions:\n1. Mix flour, baking powder, sugar, and salt in a bowl.\n2. In another bowl, whisk milk, eggs, melted butter, and lemon zest.\n3. Combine wet and dry ingredients, fold in blueberries.\n4. Heat a griddle or non-stick pan over medium heat.\n5. Pour 1/4 cup batter for each pancake.\n6. Cook until bubbles form, flip and cook other side.\n7. Serve with maple syrup and extra blueberries.",
+            "meal_type": 1,
+            "user": 14,
+            "author_favorite": true,
+            "favorites": 2,
+            "time": 30,
+            "servings": 4,
+            "date": "2024-07-31"
+        }
+    },
+    {
+        "model": "recipe_api.recipe",
+        "pk": 10,
+        "fields": {
+            "title": "Slow Cooker Pulled Pork",
+            "body": "Instructions:\n1. Rub pork shoulder with a mix of brown sugar, paprika, and spices.\n2. Place pork in slow cooker with sliced onions.\n3. Pour in barbecue sauce and apple cider vinegar.\n4. Cook on low for 8-10 hours until meat is tender.\n5. Shred pork with two forks, discarding excess fat.\n6. Mix shredded pork with cooking juices.\n7. Serve on buns with coleslaw and extra BBQ sauce.",
+            "meal_type": 10,
+            "user": 15,
+            "author_favorite": false,
+            "favorites": 1,
+            "time": 600,
+            "servings": 8,
+            "date": "2024-07-31"
+        }
+    },
+    {
+        "model": "recipe_api.recipe",
+        "pk": 12,
+        "fields": {
+            "title": "Vegan Tacos",
+            "body": "Instructions:\n1. Cook lentils according to package instructions.\n2. Sauté onions and garlic until translucent.\n3. Add cooked lentils, corn, diced tomatoes, and spices.\n4. Simmer for 10-15 minutes.\n5. Serve in taco shells with avocado and salsa.",
+            "meal_type": 5,
+            "user": 16,
+            "author_favorite": true,
+            "favorites": 3,
+            "time": 25,
+            "servings": 4,
+            "date": "2024-07-31"
+        }
+    },
+    {
+        "model": "recipe_api.recipe",
+        "pk": 11,
+        "fields": {
+            "title": "Spaghetti Aglio e Olio",
+            "body": "Instructions:\n1. Cook spaghetti according to package instructions.\n2. Sauté minced garlic in olive oil until golden.\n3. Toss cooked spaghetti with garlic oil, parsley, and chili flakes.\n4. Serve immediately with grated Parmesan.",
+            "meal_type": 1,
+            "user": 17,
+            "author_favorite": false,
+            "favorites": 1,
+            "time": 20,
+            "servings": 2,
+            "date": "2024-07-31"
+        }
+    }
+]
