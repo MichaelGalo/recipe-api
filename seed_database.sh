@@ -5,8 +5,6 @@ rm -rf ./recipe_api/migrations
 python3 manage.py migrate
 python3 manage.py makemigrations recipe_api
 python3 manage.py migrate recipe_api
-
-# Make a section for loading data from fixtures (in order)
 python3 manage.py loaddata users
 python3 manage.py loaddata tokens
 python3 manage.py loaddata grocery_subtypes

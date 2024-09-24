@@ -4,8 +4,8 @@ from .recipe import Recipe
 
 
 class IngredientForRecipe(models.Model):
-    ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    ingredient_Id = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
+    recipe_Id = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     quantity = models.IntegerField()
 
     def __str__(self):
