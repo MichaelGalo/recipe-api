@@ -8,12 +8,14 @@ from recipe_api.views import (
     RecipeView,
     GrocerySubTypeView,
     MealTypeViewSet,
+    IngredientViewSet,
 )
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r"recipes", RecipeView, basename="recipes")
 router.register(r"grocery_subtypes", GrocerySubTypeView, basename="subtypes")
 router.register(r"meal_types", MealTypeViewSet, basename="meal_types")
+router.register(r"ingredients", IngredientViewSet, basename="ingredients")
 
 urlpatterns = [
     path("", include(router.urls)),

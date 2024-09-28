@@ -3,3 +3,4 @@ from .users import UserViewSet, current_user
 from .recipe import RecipeView
 from .grocery_subtype import GrocerySubTypeView
 from .meal_types import MealTypeViewSet
+from .ingredient import IngredientViewSet
