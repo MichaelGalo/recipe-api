@@ -9,6 +9,7 @@ from recipe_api.views import (
     GrocerySubTypeView,
     MealTypeViewSet,
     IngredientViewSet,
+    IngredientForRecipeViewSet,
 )
 
 router = routers.DefaultRouter(trailing_slash=False)
@@ -16,6 +17,11 @@ router.register(r"recipes", RecipeView, basename="recipes")
 router.register(r"grocery_subtypes", GrocerySubTypeView, basename="subtypes")
 router.register(r"meal_types", MealTypeViewSet, basename="meal_types")
 router.register(r"ingredients", IngredientViewSet, basename="ingredients")
+router.register(
+    r"ingredient_for_recipes",
+    IngredientForRecipeViewSet,
+    basename="ingredient_for_recipes",
+)
 
 urlpatterns = [
     path("", include(router.urls)),
@@ -25,3 +31,4 @@ urlpatterns = [
 ]
 
 # Still need to test:
+# TODO: ingredient_for_recipes
