@@ -1,15 +1,11 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from recipe_api.views import (
-    register_user,
-    login_user,
-    current_user,
-)
+from recipe_api.views import register_user, login_user, current_user, RecipeView
 
 router = routers.DefaultRouter(trailing_slash=False)
 # example below of a new route
-# router.register(r"recipes", RecipeViewSet, basename="recipes")
+router.register(r"recipes", RecipeView, basename="recipes")
 
 urlpatterns = [
     path("", include(router.urls)),
