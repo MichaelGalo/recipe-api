@@ -1,0 +1,64 @@
+Table users {
+  id int [pk]
+  name varchar
+  email varchar
+  password password
+}
+
+Table tokens {
+  id int [pk]
+  user_id int
+  key varchar
+  created datetime
+}
+
+Table recipeLikes {
+  id int [pk]
+  user_id int
+  recipe_id int
+}
+
+Table recipes {
+  id int [pk]
+  title varchar
+  body text
+  categoryId int
+  userId int
+  authorFavorite bool
+  time int
+  servings int
+  numOfFavorites int
+  date date
+}
+
+Table ingredients {
+  id int [pk]
+  name varchar
+  grocerySubcategoryId int
+}
+
+Table ingredientsForRecipe {
+  id int [pk]
+  ingredientId int
+  recipeId int
+  quantity int
+}
+
+Table grocerySubtypes {
+  id int [pk]
+  name varchar
+}
+
+Table mealTypes {
+  id int [pk]
+  name varchar
+}
+
+Ref: "users"."id" < "recipes"."userId"
+Ref: "recipes"."id" < "ingredientsForRecipe"."recipeId"
+Ref: "mealTypes"."id" < "recipes"."categoryId"
+Ref: "ingredients"."id" < "ingredientsForRecipe"."ingredientId"
+Ref: "grocerySubtypes"."id" < "ingredients"."grocerySubcategoryId"
+Ref: "recipes"."id" < "recipeLikes"."recipe_id"
+Ref: "users"."id" < "recipeLikes"."user_id"
+Ref: "users"."id" < "tokens"."user_id"
