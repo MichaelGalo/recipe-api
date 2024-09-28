@@ -23,5 +23,3 @@ urlpatterns = [
 ]
 
 # Still need to test:
-# TODO: grocery_subtypes ALL
-# TODO: meal_types ALL
