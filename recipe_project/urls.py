@@ -5,11 +5,25 @@ from recipe_api.views import (
     register_user,
     login_user,
     current_user,
+    RecipeView,
+    GrocerySubTypeView,
+    MealTypeViewSet,
+    IngredientViewSet,
+    IngredientForRecipeViewSet,
+    RecipeLikeViewSet,
 )
 
 router = routers.DefaultRouter(trailing_slash=False)
-# example below of a new route
-# router.register(r"recipes", RecipeViewSet, basename="recipes")
+router.register(r"recipes", RecipeView, basename="recipes")
+router.register(r"grocery_subtypes", GrocerySubTypeView, basename="subtypes")
+router.register(r"meal_types", MealTypeViewSet, basename="meal_types")
+router.register(r"ingredients", IngredientViewSet, basename="ingredients")
+router.register(
+    r"ingredient_for_recipes",
+    IngredientForRecipeViewSet,
+    basename="ingredient_for_recipes",
+)
+router.register(r"recipe_likes", RecipeLikeViewSet, basename="likes")
 
 urlpatterns = [
     path("", include(router.urls)),
