@@ -31,3 +31,6 @@ urlpatterns = [
     path("login", login_user),
     path("current_user", current_user, name="current_user"),
 ]
+
+# TODO: Create Proper UserViewSet for Fetch calls from client
+# TODO: Support Query & Expansion for the various client fetch calls
