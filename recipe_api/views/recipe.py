@@ -6,29 +6,36 @@ from recipe_api.models import Recipe, MealType
 from django.contrib.auth.models import User
 
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ("id", "first_name", "last_name", "username")
+
+
+class RecipeSerializer(serializers.ModelSerializer):
+    """JSON serializer for recipes"""
+
+    meal_type = serializers.ReadOnlyField(source="meal_type.name")
+    user = UserSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = Recipe
+        fields = (
+            "id",
+            "title",
+            "body",
+            "meal_type",
+            "user",
+            "author_favorite",
+            "favorites",
+            "time",
+            "servings",
+            "date",
+        )
+
+
 class RecipeView(ViewSet):
     """Recipe view set"""
-
-    class RecipeSerializer(serializers.ModelSerializer):
-        """JSON serializer for recipes"""
-
-        meal_type = serializers.ReadOnlyField(source="meal_type.name")
-        user = serializers.ReadOnlyField(source="user.username")
-
-        class Meta:
-            model = Recipe
-            fields = (
-                "id",
-                "title",
-                "body",
-                "meal_type",
-                "user",
-                "author_favorite",
-                "favorites",
-                "time",
-                "servings",
-                "date",
-            )
 
     def create(self, request):
         """Handle POST operations"""
@@ -47,7 +54,7 @@ class RecipeView(ViewSet):
                 servings=request.data["servings"],
                 date=request.data["date"],
             )
-            serializer = self.RecipeSerializer(recipe)
+            serializer = RecipeSerializer(recipe)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except Exception as ex:
             return Response({"reason": str(ex)}, status=status.HTTP_400_BAD_REQUEST)
@@ -56,7 +63,7 @@ class RecipeView(ViewSet):
         """Handle GET requests for single recipe"""
         try:
             recipe = Recipe.objects.get(pk=pk)
-            serializer = self.RecipeSerializer(recipe)
+            serializer = RecipeSerializer(recipe)
             return Response(serializer.data)
         except Recipe.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
@@ -111,5 +118,5 @@ class RecipeView(ViewSet):
         if user is not None:
             recipes = recipes.filter(user__id=user)
 
-        serializer = self.RecipeSerializer(recipes, many=True)
+        serializer = RecipeSerializer(recipes, many=True)
         return Response(serializer.data)
