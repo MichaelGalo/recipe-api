@@ -11,6 +11,7 @@ from recipe_api.views import (
     IngredientViewSet,
     IngredientForRecipeViewSet,
     RecipeLikeViewSet,
+    UserViewSet,
 )
 
 router = routers.DefaultRouter(trailing_slash=False)
@@ -24,6 +25,7 @@ router.register(
     basename="ingredient_for_recipes",
 )
 router.register(r"recipe_likes", RecipeLikeViewSet, basename="likes")
+router.register(r"users", UserViewSet, basename="users")
 
 urlpatterns = [
     path("", include(router.urls)),
@@ -32,5 +34,4 @@ urlpatterns = [
     path("current_user", current_user, name="current_user"),
 ]
 
-# TODO: Create Proper UserViewSet for Fetch calls from client
 # TODO: Support Query & Expansion for the various client fetch calls
