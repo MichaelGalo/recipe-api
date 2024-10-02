@@ -163,27 +163,4 @@
       "last_name": "Thomas",
       "password": "password"
     }
-  },
-  {
-    "model": "auth.user",
-    "pk": 16,
-    "fields": {
-      "username": "michael_galo",
-      "email": "michael@michaelthinks.co",
-      "first_name": "Michael",
-      "last_name": "Galo",
-      "password": "password"
-    }
-  },
-  {
-    "model": "auth.user",
-    "pk": 17,
-    "fields": {
-      "username": "leah_danger_galo",
-      "email": "leahgalo111@gmail.com",
-      "first_name": "Leah",
-      "last_name": "Danger Galo",
-      "password": "password"
-    }
-  }
-]
+  }]
