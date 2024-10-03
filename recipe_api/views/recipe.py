@@ -6,49 +6,21 @@ from recipe_api.models import Recipe, MealType
 from django.contrib.auth.models import User
 
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ("id", "first_name", "last_name", "username")
-
-
-class RecipeSerializer(serializers.ModelSerializer):
-    """JSON serializer for recipes"""
-
-    meal_type = serializers.ReadOnlyField(source="meal_type.name")
-    user = UserSerializer(many=False, read_only=True)
-
-    class Meta:
-        model = Recipe
-        fields = (
-            "id",
-            "title",
-            "body",
-            "meal_type",
-            "user",
-            "author_favorite",
-            "favorites",
-            "time",
-            "servings",
-            "date",
-        )
-
-
 class RecipeView(ViewSet):
     """Recipe view set"""
 
     def create(self, request):
         """Handle POST operations"""
         try:
-            meal_type = MealType.objects.get(pk=request.data["meal_type"])
-            user = User.objects.get(pk=request.data["user"])
+            meal_type = MealType.objects.get(pk=request.data["mealTypeId"])
+            user = User.objects.get(pk=request.data["userId"])
 
             recipe = Recipe.objects.create(
                 title=request.data["title"],
                 body=request.data["body"],
                 meal_type=meal_type,
                 user=user,
-                author_favorite=request.data["author_favorite"],
+                author_favorite=request.data["authorFavorite"],
                 favorites=request.data["favorites"],
                 time=request.data["time"],
                 servings=request.data["servings"],
@@ -120,3 +92,33 @@ class RecipeView(ViewSet):
 
         serializer = RecipeSerializer(recipes, many=True)
         return Response(serializer.data)
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ("id", "first_name", "last_name", "username")
+
+
+class RecipeSerializer(serializers.ModelSerializer):
+    """JSON serializer for recipes"""
+
+    meal_type = serializers.ReadOnlyField(
+        source="meal_type.name"
+    )  # does this need dunder?
+    user = UserSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = Recipe
+        fields = (
+            "id",
+            "title",
+            "body",
+            "meal_type",
+            "user",
+            "author_favorite",
+            "favorites",
+            "time",
+            "servings",
+            "date",
+        )

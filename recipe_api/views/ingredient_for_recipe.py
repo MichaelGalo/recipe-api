@@ -24,8 +24,8 @@ class IngredientForRecipeViewSet(ViewSet):
     def create(self, request):
         """Handle POST operations"""
         try:
-            ingredient = Ingredient.objects.get(pk=request.data["ingredient_Id"])
-            recipe = Recipe.objects.get(pk=request.data["recipe_Id"])
+            ingredient = Ingredient.objects.get(pk=request.data["ingredient_id"])
+            recipe = Recipe.objects.get(pk=request.data["recipe_id"])
 
             ingredient_for_recipe = IngredientForRecipe.objects.create(
                 ingredient_Id=ingredient,
@@ -64,10 +64,10 @@ class IngredientForRecipeViewSet(ViewSet):
         try:
             ingredient_for_recipe = IngredientForRecipe.objects.get(pk=pk)
             ingredient_for_recipe.ingredient_Id = Ingredient.objects.get(
-                pk=request.data["ingredient_Id"]
+                pk=request.data["ingredient_id"]
             )
             ingredient_for_recipe.recipe_Id = Recipe.objects.get(
-                pk=request.data["recipe_Id"]
+                pk=request.data["recipe_id"]
             )
             ingredient_for_recipe.quantity = request.data["quantity"]
             ingredient_for_recipe.save()
