@@ -34,4 +34,4 @@ urlpatterns = [
     path("current_user", current_user, name="current_user"),
 ]
 
-# TODO: Support Query & Expansion for the various client fetch calls
+# TODO: GET /ingredient_for_recipe?recipeId=14&_expand=ingredient support
