@@ -2,8 +2,9 @@ from django.http import HttpResponseServerError
 from rest_framework import serializers, status
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
-from recipe_api.models import Recipe, MealType
+from recipe_api.models import Recipe, MealType, RecipeLike
 from django.contrib.auth.models import User
+from rest_framework.decorators import action
 
 
 class RecipeView(ViewSet):
@@ -92,6 +93,37 @@ class RecipeView(ViewSet):
 
         serializer = RecipeSerializer(recipes, many=True)
         return Response(serializer.data)
+
+    @action(detail=False, methods=["get"])
+    def favorites(self, request):
+        """Handle GET requests for favorite recipes"""
+        try:
+            user_id = request.query_params.get("userId")
+            if user_id is None:
+                return Response(
+                    {"error": "userId is required"}, status=status.HTTP_400_BAD_REQUEST
+                )
+
+            author_favorite = request.query_params.get("authorFavorite")
+
+            if author_favorite and author_favorite.lower() == "true":
+                # Return recipes created by the user and marked as author_favorite
+                recipes = Recipe.objects.filter(user__id=user_id, author_favorite=True)
+            else:
+                # Return recipes liked by the user but not created by them
+                liked_recipe_ids = RecipeLike.objects.filter(
+                    user_Id=user_id
+                ).values_list("recipe_Id", flat=True)
+                recipes = Recipe.objects.filter(id__in=liked_recipe_ids).exclude(
+                    user__id=user_id
+                )
+
+            serializer = RecipeSerializer(recipes, many=True)
+            return Response(serializer.data)
+        except Exception as ex:
+            return Response(
+                {"error": str(ex)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
 
 
 class UserSerializer(serializers.ModelSerializer):

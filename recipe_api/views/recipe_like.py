@@ -99,37 +99,29 @@ class RecipeLikeViewSet(ViewSet):
             )
 
     def list(self, request):
-        """Handle GET requests for RecipeLikes with specific filtering options"""
+        """Handle GET requests for RecipeLikes and AuthorFavorites with specific filtering"""
         try:
-            # Get the required user_id from query parameters
             user_id = request.query_params.get("userId")
-
-            # If user_id is not provided, return a bad request response
             if user_id is None:
                 return Response(
                     {"error": "userId is required"}, status=status.HTTP_400_BAD_REQUEST
                 )
 
-            # Start with all RecipeLikes for the given user
-            recipe_likes = RecipeLike.objects.select_related(
-                "recipe_Id", "user_Id"
-            ).filter(user_Id=user_id)
-
-            # Get the authorFavorite parameter
             author_favorite = request.query_params.get("authorFavorite")
 
-            if author_favorite is not None:
-                if author_favorite.lower() == "true":
-                    # Filter for recipes authored by the user
-                    recipe_likes = recipe_likes.filter(recipe_Id__user=user_id)
-                elif author_favorite.lower() == "false":
-                    # Filter for recipes NOT authored by the user
-                    recipe_likes = recipe_likes.exclude(recipe_Id__user=user_id)
+            if author_favorite and author_favorite.lower() == "true":
+                # Return recipes created by the user and marked as author_favorite
+                recipes = Recipe.objects.filter(user__id=user_id, author_favorite=True)
+                serializer = RecipeSerializer(recipes, many=True)
             else:
-                # If authorFavorite is not provided, return all liked recipes
-                pass  # No additional filtering needed
+                # Return recipes liked by the user but not created by them
+                recipe_likes = (
+                    RecipeLike.objects.filter(user_Id=user_id)
+                    .exclude(recipe_Id__user__id=user_id)
+                    .select_related("recipe_Id", "user_Id")
+                )
+                serializer = RecipeLikeSerializer(recipe_likes, many=True)
 
-            serializer = RecipeLikeSerializer(recipe_likes, many=True)
             return Response(serializer.data)
         except Exception as ex:
             return Response(
