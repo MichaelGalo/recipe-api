@@ -86,7 +86,7 @@ class RecipeView(ViewSet):
         if meal_type is not None:
             recipes = recipes.filter(meal_type__id=meal_type)
 
-        user = request.query_params.get("user", None)
+        user = request.query_params.get("userId", None)
         if user is not None:
             recipes = recipes.filter(user__id=user)
 

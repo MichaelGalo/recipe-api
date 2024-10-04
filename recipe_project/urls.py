@@ -33,5 +33,3 @@ urlpatterns = [
     path("login", login_user),
     path("current_user", current_user, name="current_user"),
 ]
-
-# TODO: GET /ingredient_for_recipe?recipeId=14&_expand=ingredient support

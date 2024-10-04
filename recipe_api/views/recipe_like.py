@@ -4,14 +4,24 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 from recipe_api.models import RecipeLike, Recipe
 from django.contrib.auth.models import User
+from django.db.models import F, Q
+
+
+# TODO: Add recipe serializer and import statement of the model
+class RecipeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Recipe
+        fields = ("id", "title", "body", "meal_type", "user")  #  maybe add other info
 
 
 class RecipeLikeSerializer(serializers.ModelSerializer):
     """JSON serializer for RecipeLike"""
 
+    recipe = RecipeSerializer(source="recipe_Id", read_only=True)
+
     class Meta:
         model = RecipeLike
-        fields = ("id", "recipe_Id", "user_Id")
+        fields = ("id", "recipe_Id", "user_Id", "recipe")
 
 
 class RecipeLikeViewSet(ViewSet):
@@ -89,10 +99,35 @@ class RecipeLikeViewSet(ViewSet):
             )
 
     def list(self, request):
-        """Handle GET requests for all items"""
+        """Handle GET requests for all items with filtering"""
         try:
-            recipe_likes = RecipeLike.objects.all()
+            # Get the required user_id from query parameters
+            user_id = request.query_params.get("userId")
+
+            # If user_id is not provided, return a bad request response
+            if user_id is None:
+                return Response(
+                    {"error": "userId is required"}, status=status.HTTP_400_BAD_REQUEST
+                )
+
+            # Filter recipe likes by the given user_id
+            recipe_likes = RecipeLike.objects.select_related(
+                "recipe_Id", "user_Id"
+            ).filter(user_Id=user_id)
+
+            # Filter for recipes liked by the user but not authored by them
+            liked_not_authored = request.query_params.get("likedNotAuthored")
+            if liked_not_authored and liked_not_authored.lower() == "true":
+                recipe_likes = recipe_likes.filter(~Q(recipe_Id__user=F("user_Id")))
+
+            # Filter for recipes liked by the user and authored by them
+            liked_and_authored = request.query_params.get("likedAndAuthored")
+            if liked_and_authored and liked_and_authored.lower() == "true":
+                recipe_likes = recipe_likes.filter(recipe_Id__user=F("user_Id"))
+
             serializer = RecipeLikeSerializer(recipe_likes, many=True)
-            return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(serializer.data)
         except Exception as ex:
-            return HttpResponseServerError(str(ex))
+            return Response(
+                {"error": str(ex)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
