@@ -5,6 +5,8 @@ from rest_framework.viewsets import ViewSet
 from recipe_api.models import Recipe, MealType, RecipeLike
 from django.contrib.auth.models import User
 from rest_framework.decorators import action
+from django.shortcuts import get_object_or_404
+from datetime import datetime
 
 
 class RecipeView(ViewSet):
@@ -44,39 +46,36 @@ class RecipeView(ViewSet):
     def update(self, request, pk=None):
         """Handle PUT requests for a recipe"""
         try:
-            recipe = Recipe.objects.get(pk=pk)
-            meal_type = MealType.objects.get(pk=request.data["meal_type"])
-            user = User.objects.get(pk=request.data["user"])
+            recipe = get_object_or_404(Recipe, pk=pk)
 
-            recipe.title = request.data["title"]
-            recipe.body = request.data["body"]
-            recipe.meal_type = meal_type
-            recipe.user = user
-            recipe.author_favorite = request.data["author_favorite"]
-            recipe.favorites = request.data["favorites"]
-            recipe.time = request.data["time"]
-            recipe.servings = request.data["servings"]
-            recipe.date = request.data["date"]
+            # Update meal_type if provided
+            meal_type_id = request.data.get("mealTypeId")
+            if meal_type_id is not None:
+                recipe.meal_type = get_object_or_404(MealType, pk=meal_type_id)
+
+            # Update user if provided, otherwise keep the existing one
+            user_id = request.data.get("userId")
+            if user_id is not None:
+                recipe.user = get_object_or_404(User, pk=user_id)
+
+            # Update other fields
+            recipe.title = request.data.get("title", recipe.title)
+            recipe.body = request.data.get("body", recipe.body)
+            recipe.author_favorite = request.data.get(
+                "authorFavorite", recipe.author_favorite
+            )
+            recipe.favorites = request.data.get("favorites", recipe.favorites)
+            recipe.time = request.data.get("time", recipe.time)
+            recipe.servings = request.data.get("servings", recipe.servings)
+            recipe.date = request.data.get("date", recipe.date)
+
             recipe.save()
 
-            return Response(None, status=status.HTTP_204_NO_CONTENT)
-        except Recipe.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-        except Exception as ex:
-            return HttpResponseServerError(str(ex))
+            serializer = RecipeSerializer(recipe)
+            return Response(serializer.data, status=status.HTTP_200_OK)
 
-    def destroy(self, request, pk=None):
-        """Handle DELETE requests for a single recipe"""
-        try:
-            recipe = Recipe.objects.get(pk=pk)
-            recipe.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        except Recipe.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
         except Exception as ex:
-            return Response(
-                {"message": str(ex)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
+            return Response({"error": str(ex)}, status=status.HTTP_400_BAD_REQUEST)
 
     def list(self, request):
         """Handle GET requests to get all recipes"""
