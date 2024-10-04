@@ -99,7 +99,7 @@ class RecipeLikeViewSet(ViewSet):
             )
 
     def list(self, request):
-        """Handle GET requests for all items with filtering"""
+        """Handle GET requests for RecipeLikes with specific filtering options"""
         try:
             # Get the required user_id from query parameters
             user_id = request.query_params.get("userId")
@@ -110,20 +110,24 @@ class RecipeLikeViewSet(ViewSet):
                     {"error": "userId is required"}, status=status.HTTP_400_BAD_REQUEST
                 )
 
-            # Filter recipe likes by the given user_id
+            # Start with all RecipeLikes for the given user
             recipe_likes = RecipeLike.objects.select_related(
                 "recipe_Id", "user_Id"
             ).filter(user_Id=user_id)
 
-            # Filter for recipes liked by the user but not authored by them
-            liked_not_authored = request.query_params.get("likedNotAuthored")
-            if liked_not_authored and liked_not_authored.lower() == "true":
-                recipe_likes = recipe_likes.filter(~Q(recipe_Id__user=F("user_Id")))
+            # Get the authorFavorite parameter
+            author_favorite = request.query_params.get("authorFavorite")
 
-            # Filter for recipes liked by the user and authored by them
-            liked_and_authored = request.query_params.get("likedAndAuthored")
-            if liked_and_authored and liked_and_authored.lower() == "true":
-                recipe_likes = recipe_likes.filter(recipe_Id__user=F("user_Id"))
+            if author_favorite is not None:
+                if author_favorite.lower() == "true":
+                    # Filter for recipes authored by the user
+                    recipe_likes = recipe_likes.filter(recipe_Id__user=user_id)
+                elif author_favorite.lower() == "false":
+                    # Filter for recipes NOT authored by the user
+                    recipe_likes = recipe_likes.exclude(recipe_Id__user=user_id)
+            else:
+                # If authorFavorite is not provided, return all liked recipes
+                pass  # No additional filtering needed
 
             serializer = RecipeLikeSerializer(recipe_likes, many=True)
             return Response(serializer.data)
