@@ -124,6 +124,17 @@ class RecipeView(ViewSet):
                 {"error": str(ex)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
 
+    def destroy(self, request, pk=None):
+        """Handle DELETE requests for a single recipe"""
+        try:
+            recipe = get_object_or_404(Recipe, pk=pk)
+            recipe.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Exception as ex:
+            return Response(
+                {"error": str(ex)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
