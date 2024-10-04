@@ -38,7 +38,7 @@ class RecipeView(ViewSet):
         """Handle GET requests for single recipe"""
         try:
             recipe = Recipe.objects.get(pk=pk)
-            serializer = RecipeSerializer(recipe)
+            serializer = RecipeSerializer(recipe, context={"request": request})
             return Response(serializer.data)
         except Recipe.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
@@ -145,9 +145,7 @@ class UserSerializer(serializers.ModelSerializer):
 class RecipeSerializer(serializers.ModelSerializer):
     """JSON serializer for recipes"""
 
-    meal_type = serializers.ReadOnlyField(
-        source="meal_type.name"
-    )  # does this need dunder?
+    meal_type = serializers.ReadOnlyField(source="meal_type.name")
     user = UserSerializer(many=False, read_only=True)
 
     class Meta:

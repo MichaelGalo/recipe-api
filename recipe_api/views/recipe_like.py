@@ -5,9 +5,9 @@ from rest_framework.viewsets import ViewSet
 from recipe_api.models import RecipeLike, Recipe
 from django.contrib.auth.models import User
 from django.db.models import F, Q
+from rest_framework.decorators import action
 
 
-# TODO: Add recipe serializer and import statement of the model
 class RecipeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recipe
@@ -127,3 +127,24 @@ class RecipeLikeViewSet(ViewSet):
             return Response(
                 {"error": str(ex)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
+
+    @action(detail=False, methods=["GET"])
+    def check_like(self, request):
+        recipe_id = request.query_params.get("recipe_id")
+        user_id = request.query_params.get("user_id")
+
+        if not recipe_id or not user_id:
+            return Response(
+                {"error": "Both recipe_id and user_id are required"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        try:
+            like = RecipeLike.objects.filter(
+                recipe_Id_id=recipe_id, user_Id_id=user_id
+            ).first()
+            return Response(
+                {"is_liked": like is not None, "like_id": like.id if like else None}
+            )
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
