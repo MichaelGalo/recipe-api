@@ -33,7 +33,7 @@ The API uses a SQLite3 database to store all data related to users, recipes, ing
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/roll-for-recipe.git
+   git clone https://github.com/MichaelGalo/recipe-api.git
    cd roll-for-recipe
 
 2. Create the viritual environment: 
