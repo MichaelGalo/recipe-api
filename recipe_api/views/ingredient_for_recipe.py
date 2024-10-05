@@ -3,19 +3,33 @@ from rest_framework import serializers, status
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 from recipe_api.models import IngredientForRecipe, Ingredient, Recipe
+from django.db.models import Q
+
+
+class IngredientSerializer(serializers.ModelSerializer):
+    """JSON serializer for Ingredient"""
+
+    class Meta:
+        model = Ingredient
+        fields = ("id", "name", "grocerySubTypeId")
+
+
+class RecipeSerializer(serializers.ModelSerializer):
+    """JSON serializer for Recipe"""
+
+    class Meta:
+        model = Recipe
+        fields = ("id", "title")  # Add other fields as needed
 
 
 class IngredientForRecipeSerializer(serializers.ModelSerializer):
     """JSON serializer for IngredientForRecipe"""
 
+    ingredient = IngredientSerializer(source="ingredient_Id", read_only=True)
+
     class Meta:
         model = IngredientForRecipe
-        fields = (
-            "id",
-            "ingredient_Id",
-            "recipe_Id",
-            "quantity",
-        )
+        fields = ("id", "ingredient_Id", "recipe_Id", "quantity", "ingredient")
 
 
 class IngredientForRecipeViewSet(ViewSet):
@@ -24,8 +38,8 @@ class IngredientForRecipeViewSet(ViewSet):
     def create(self, request):
         """Handle POST operations"""
         try:
-            ingredient = Ingredient.objects.get(pk=request.data["ingredient_Id"])
-            recipe = Recipe.objects.get(pk=request.data["recipe_Id"])
+            ingredient = Ingredient.objects.get(pk=request.data["ingredient_id"])
+            recipe = Recipe.objects.get(pk=request.data["recipe_id"])
 
             ingredient_for_recipe = IngredientForRecipe.objects.create(
                 ingredient_Id=ingredient,
@@ -49,7 +63,18 @@ class IngredientForRecipeViewSet(ViewSet):
         """Handle GET requests for single item"""
         try:
             ingredient_for_recipe = IngredientForRecipe.objects.get(pk=pk)
-            serializer = IngredientForRecipeSerializer(ingredient_for_recipe)
+
+            # Check for expansion parameters
+            expand = request.query_params.get("_expand", "").split(",")
+
+            if "ingredient" in expand or "recipe" in expand:
+                serializer = IngredientForRecipeSerializer(ingredient_for_recipe)
+            else:
+                serializer = IngredientForRecipeSerializer(
+                    ingredient_for_recipe,
+                    fields=("id", "ingredient_Id", "recipe_Id", "quantity"),
+                )
+
             return Response(serializer.data)
         except IngredientForRecipe.DoesNotExist:
             return Response(
@@ -64,10 +89,10 @@ class IngredientForRecipeViewSet(ViewSet):
         try:
             ingredient_for_recipe = IngredientForRecipe.objects.get(pk=pk)
             ingredient_for_recipe.ingredient_Id = Ingredient.objects.get(
-                pk=request.data["ingredient_Id"]
+                pk=request.data["ingredient_id"]
             )
             ingredient_for_recipe.recipe_Id = Recipe.objects.get(
-                pk=request.data["recipe_Id"]
+                pk=request.data["recipe_id"]
             )
             ingredient_for_recipe.quantity = request.data["quantity"]
             ingredient_for_recipe.save()
@@ -107,10 +132,29 @@ class IngredientForRecipeViewSet(ViewSet):
     def list(self, request):
         """Handle GET requests for all items"""
         try:
-            ingredient_for_recipes = IngredientForRecipe.objects.all()
-            serializer = IngredientForRecipeSerializer(
-                ingredient_for_recipes, many=True
-            )
+            recipe_id = request.query_params.get("recipe_id")
+
+            if recipe_id:
+                ingredient_for_recipes = IngredientForRecipe.objects.filter(
+                    recipe_Id=recipe_id
+                )
+            else:
+                ingredient_for_recipes = IngredientForRecipe.objects.all()
+
+            # Check for expansion parameters
+            expand = request.query_params.get("_expand", "").split(",")
+
+            if "ingredient" in expand:
+                serializer = IngredientForRecipeSerializer(
+                    ingredient_for_recipes, many=True
+                )
+            else:
+                serializer = IngredientForRecipeSerializer(
+                    ingredient_for_recipes,
+                    many=True,
+                    fields=("id", "ingredient_Id", "recipe_Id", "quantity"),
+                )
+
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Exception as ex:
             return HttpResponseServerError(str(ex))

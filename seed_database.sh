@@ -11,6 +11,5 @@ python3 manage.py loaddata grocery_subtypes
 python3 manage.py loaddata ingredients
 python3 manage.py loaddata meal_types
 python3 manage.py loaddata recipes
-python3 manage.py loaddata recipe_likes
 python3 manage.py loaddata ingredients_for_recipes
 

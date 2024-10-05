@@ -1,5 +1,6 @@
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -15,6 +16,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Things I've added from debugging issues (from claude)
+AUTHENTICATION_BACKENDS = ["django.contrib.auth.backends.ModelBackend"]
+SESSION_ENGINE = "django.contrib.sessions.backends.db"
 
 # Application definition
 
@@ -41,14 +45,15 @@ REST_FRAMEWORK = {
 }
 
 
-CORS_ORIGIN_WHITELIST = (
+CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-)
+]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -57,6 +62,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
 
 ROOT_URLCONF = "recipe_project.urls"
 

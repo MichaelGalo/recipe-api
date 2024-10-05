@@ -1,5 +1,5 @@
 # serializers.py
-from rest_framework import serializers
+from rest_framework import serializers, filters
 from django.contrib.auth.models import User
 from rest_framework.viewsets import ModelViewSet
 from django.contrib.auth.models import User
@@ -17,6 +17,9 @@ class UserSerializer(serializers.ModelSerializer):
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ["email", "username"]
 
 
 @api_view(["GET"])

@@ -11,6 +11,7 @@ from recipe_api.views import (
     IngredientViewSet,
     IngredientForRecipeViewSet,
     RecipeLikeViewSet,
+    UserViewSet,
 )
 
 router = routers.DefaultRouter(trailing_slash=False)
@@ -24,6 +25,7 @@ router.register(
     basename="ingredient_for_recipes",
 )
 router.register(r"recipe_likes", RecipeLikeViewSet, basename="likes")
+router.register(r"users", UserViewSet, basename="users")
 
 urlpatterns = [
     path("", include(router.urls)),
